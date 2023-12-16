@@ -49,6 +49,25 @@ class PyCalcWindow(QMainWindow):
             ["1", "2", "3", "-", ")",],
             ["0", "00", ".", "+", "=",]
         ]
+        for row, keys in enumerate(keyBoard):
+            for col, key in enumerate(keys):
+                self.buttonMap[key] = QPushButton(key)
+                self.buttonMap[key].setFixedSize(BUTTON_SIZE, BUTTON_SIZE)
+                buttonsLayout.addWidget(self.buttonMap[key], row, col)
+        self.generalLayout.addLayout(buttonsLayout)
+
+    def setDisplayText(self, text):
+        """Set the display's text"""
+        self.display.setText(text)
+        self.display.setFocus()
+
+    def displayText(self):
+        """Get the display's text"""
+        return self.display.text()
+
+    def clearDisplay(self):
+        """Clear the display"""
+        self.setDisplayText("")
 
 def main():
     """PyCalc's main function"""
