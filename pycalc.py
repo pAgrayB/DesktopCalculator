@@ -71,13 +71,13 @@ class PyCalcWindow(QMainWindow):
         """Clear the display"""
         self.setDisplayText("")
 
-    def evaluateExpression(expression):
-        """Evaluate an expression (Model)"""
-        try:
-            result = str(eval(expression, {}, {}))
-        except Exception:
-            result = ERROR_MSG
-        return result
+def evaluateExpression(expression):
+    """Evaluate an expression (Model)"""
+    try:
+        result = str(eval(expression, {}, {}))
+    except Exception:
+        result = ERROR_MSG
+    return result
 
 class PyCalc:
     """PyCalc's controller class."""
@@ -112,6 +112,7 @@ def main():
     pycalcApp = QApplication([])
     pycalcWindow = PyCalcWindow()
     pycalcWindow.show()
+    PyCalc(model=evaluateExpression, view=pycalcWindow)
     sys.exit(pycalcApp.exec())
 
 if __name__ == "__main__":
