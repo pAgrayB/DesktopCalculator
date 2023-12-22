@@ -89,13 +89,13 @@ class PyCalc:
 
     def _calculateResult(self):
         result = self._evaluate(expression=self._view.displayText())
-        self._view.setDislayText(result)
+        self._view.setDisplayText(result)
 
     def _buildExpression(self, subExpression):
         if self._view.displayText() == ERROR_MSG:
             self._view.clearDisplay()
-        expression = self._view.displayText + subExpression
-        self._view.setDislayText(expression)
+        expression = self._view.displayText() + subExpression
+        self._view.setDisplayText(expression)
 
     def _connectSignalsAndSlots(self):
         for keySymbol, button in self._view.buttonMap.items():
@@ -105,7 +105,7 @@ class PyCalc:
                 )
         self._view.buttonMap["="].clicked.connect(self._calculateResult)
         self._view.display.returnPressed.connect(self._calculateResult)
-        self._view.buttonMap["C"].connect(self._view.clearDisplay)
+        self._view.buttonMap["C"].clicked.connect(self._view.clearDisplay)
 
 def main():
     """PyCalc's main function"""
